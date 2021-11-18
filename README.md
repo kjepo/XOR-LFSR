@@ -9,6 +9,9 @@
 </p>
 <p>
   An application of LFSR is pseudo random number generators.
+  The attached code shows a 16-bit random number generator written
+  in ARM assembly, intended for a FORTH system where time and
+  space is at a premium.
 </p>
 
 ## Theory
