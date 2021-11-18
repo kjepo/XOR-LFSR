@@ -46,15 +46,15 @@ RND16B:
         RET
 </pre>
 <p>
-  That's it &mdash only four instructions!
+  That's it &mdash; only four instructions!
   (The syntax is for Mac OS X, you may have to change it for other platforms.)
 </p>
 <p>
-  <tt>RND16B</tt> assumes that the previous state (or the initial seed, initially)
+  <tt>RND16B</tt> assumes that the previous state (or the initial seed)
   is stored in register <tt>W0</tt>.
   If you want, you can instead call <tt>RND16</tt> which stores the current
-  state in memory inbetween calls.  It will also return the next random number
-  in <tt>W0</tt>.
+  state in memory between calls.  (It will also return the next random number
+  in <tt>W0</tt>.)
 </p>
 <p>
   The main program generates 65535 random numbers. You can verify the cycle length
