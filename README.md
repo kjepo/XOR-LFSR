@@ -5,7 +5,9 @@
   where the input is a linear function of two or more bits (taps).
   An <i>XOR LFSR</i> is a linear feedback shift register which
   is implemented using XOR and shift operations which (not surprisingly)
-  can execute very fast on modern processors.
+  can execute very fast on modern processors, roughly a picosecond.
+</p>
+<p>
   An application of LFSR is pseudo random number generators.
 </p>
 
