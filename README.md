@@ -44,7 +44,7 @@ for (;;) {
 ## Implementation
 <p>
   Included is ARM assembly code for the above XOR LFSR operation, the
-  central subroutine being <tt>RND16B</tt>
+  central subroutine being <tt>RND16B</tt> (see <tt>RND.s</tt>)
 </p>
 <pre>
 RND16B:
