@@ -1,4 +1,4 @@
-# Fast randoms for ARM assembler using XOR LFSR
+# Fast random numbers for ARM assembler using XOR LFSR
 
 ## Abstract
 <p>
