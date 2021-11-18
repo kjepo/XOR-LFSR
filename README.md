@@ -23,15 +23,18 @@
 </p>
 <pre>
 lfsr = 0xACE1;
-lfsr ^= lfsr >> 7;
-lfsr ^= lfsr << 9;
-lfsr ^= lfsr >> 13;
+for (;;) {  
+    lfsr ^= lfsr >> 7;
+    lfsr ^= lfsr << 9;
+    lfsr ^= lfsr >> 13;
+    printf("%04X\n", lfsr);
+}    
 </pre>
 <p>
   With the above numbers (7, 9, 13) the sequence will be
 </p>
 <pre>
-ACE1 DDBE D603 90AB F8BF 654D 6B84 ...
+ DDBE D603 89AB F8BF 654D 6B84 CD55 52CD 826C 536A CBCA 705E 0CBE ...
 </pre>
 <p>
   The length of the cycle is actually 65535, i.e., all 16-bit integer values
