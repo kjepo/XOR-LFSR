@@ -1,4 +1,4 @@
-# XOR-LFSR &mdash; fast random number generator for ARM assembler
+# Fast random number generator for ARM assembler using XOR LFSR
 ## Abstract
 <p>
   A <i>LFSR</i> (linear feedback shift register) is a shift register
