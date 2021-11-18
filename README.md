@@ -8,6 +8,7 @@
   can execute very fast on modern processors.
   An application of LFSR is pseudo random number generators.
 </p>
+
 ## Theory
 <p>
   Starting with a non-zero initial value (the so-called <i>seed</i>)
