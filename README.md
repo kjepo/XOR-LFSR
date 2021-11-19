@@ -42,7 +42,7 @@ for (;;) {
 </pre>
 <p>
   The length of the cycle is actually 65535, i.e., all 16-bit integer values
-  are generated exactly once.
+  except 0 are generated exactly once.
 </p>
 
 ### 64-bit version
@@ -102,6 +102,15 @@ RND64B:
   $ ./demo16 | sort -u | wc -l
   65535
 </pre>
+
+<p align="center">
+  <img alt="Scatter plot" 
+       src="https://github.com/kjepo/XOR-LFSR/blob/main/rnd-scatterplot.png">
+  <br>
+  <em>Scatter plot with the first 100 16-bit random values on the y-axis and x = 1 .. 100</em>
+</p>
+
+
 
 ## References
 
