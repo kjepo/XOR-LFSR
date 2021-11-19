@@ -10,9 +10,9 @@
 </p>
 <p>
   An application of LFSR is pseudo random number generators.
-  The included code shows a 16-bit random number generator written
-  in ARM assembly, intended for a FORTH system where time and
-  space is at a premium.
+  The included code shows both a 16-bit and a 64-bit
+  random number generator written in ARM assembly,
+  intended for a FORTH system where time and space is at a premium.
 </p>
 
 ## Theory
@@ -21,6 +21,9 @@
   in the register, the XOR LFSR operation can produce a seemingly
   random (although obviously determinstic) sequence of values.
 </p>
+
+### 16-bit version
+
 <pre>
 lfsr = 0xACE1;
 for (;;) {  
@@ -30,8 +33,9 @@ for (;;) {
     printf("%04X\n", lfsr);
 }    
 </pre>
+
 <p>
-  With the above numbers (7, 9, 13) the sequence will be
+  The 16-bit sequence will be 
 </p>
 <pre>
  DDBE D603 89AB F8BF 654D 6B84 CD55 52CD 826C 536A CBCA 705E 0CBE ...
@@ -41,10 +45,29 @@ for (;;) {
   are generated exactly once.
 </p>
 
+### 64-bit version
+
+<pre>
+lfsr = 0xACE1;
+for (;;) {  
+    lfsr ^= lfsr << 13;
+    lfsr ^= lfsr >> 7;
+    lfsr ^= lfsr << 17;
+    printf("%04X\n", lfsr);
+}    
+</pre>
+<p>
+  The 64-bit sequence will be 
+</p>
+<pre>
+00002B6F7E47B5F8 3B3A90FC4ECF4493 CFD88934D0A59EDA 014FA87665762367 ...
+</pre>
+
 ## Implementation
 <p>
-  Included is ARM assembly code for the above XOR LFSR operation, the
-  central subroutine being <tt>RND16B</tt> (see <tt>RND.s</tt>)
+  Included is ARM assembly code for the above XOR LFSR operations, the
+  central subroutines being <tt>RND16B</tt> and <tt>RND64B</tt>
+  (see <tt>rnd16.s</tt> and <tt>rnd64.s</tt>, respectively.)
 </p>
 <pre>
 RND16B:
@@ -53,24 +76,30 @@ RND16B:
         AND   X0, X0, #0xffff           ; clear upper 32 bits
         EOR   W0, W0, W0, ASR #13       ; W0 ^= W0 >> 13
         RET
+
+RND64B:
+	EOR   X0, X0, X0, LSL #13 ; X0 ^= X0 << 13
+	EOR   X0, X0, X0, LSR #7  ; X0 ^= X0 >> 7
+	EOR   X0, X0, X0, LSL #17 ; X0 ^= X0 << 17
+
 </pre>
 <p>
-  That's it &mdash; only four instructions!
+  That's it &mdash; only three (or four) instructions!
   (The syntax is for Mac OS X, you may have to change it for other platforms.)
 </p>
 <p>
-  <tt>RND16B</tt> assumes that the previous state (or the initial seed)
-  is stored in register <tt>W0</tt>.
-  If you want, you can instead call <tt>RND16</tt> which stores the current
-  state in memory between calls.  (It will also return the next random number
-  in <tt>W0</tt>.)
+  Both <tt>RND16B</tt> and <tt>RND64B</tt> assume that the previous
+  state (or the initial seed) is stored in register <tt>X0</tt>.
+  If you want, you can instead call <tt>RND16</tt>/<tt>RND64</tt>
+  which stores the current state in memory between calls.
+  (It will also return the next random number in <tt>X0</tt>.)
 </p>
 <p>
-  The main program generates 65535 random numbers. You can verify the cycle length
-  and the number of unique numbers by
+  The main program <tt>demo16</tt> generates 65535 random numbers.
+  You can verify the cycle length and the number of unique numbers by
 </p>
 <pre>
-  $ ./RND | sort -u | wc -l
+  $ ./demo16 | sort -u | wc -l
   65535
 </pre>
 
@@ -79,3 +108,8 @@ RND16B:
 Wikipedia on LFSR
 <br>
 https://en.m.wikipedia.org/wiki/Linear-feedback_shift_register
+
+Wikipedia on Xorshift
+<br>
+https://en.wikipedia.org/wiki/Xorshift
+
