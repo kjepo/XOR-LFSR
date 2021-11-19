@@ -1,6 +1,6 @@
         #include "kload.s"
-        #include "kprint.s"
         #include "pushpop.s"
+        #include "kprint.s"
         #include "printhex.s"
         #include "sysexit.s"
 	#include "rnd16.s"
