@@ -76,7 +76,8 @@ RND16B:
         AND   X0, X0, #0xffff           ; clear upper 32 bits
         EOR   W0, W0, W0, ASR #13       ; W0 ^= W0 >> 13
         RET
-
+</pre>
+<pre>
 RND64B:
         EOR   X0, X0, X0, LSL #13 ; X0 ^= X0 << 13
         EOR   X0, X0, X0, LSR #7  ; X0 ^= X0 >> 7
