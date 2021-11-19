@@ -78,10 +78,9 @@ RND16B:
         RET
 
 RND64B:
-	EOR   X0, X0, X0, LSL #13 ; X0 ^= X0 << 13
-	EOR   X0, X0, X0, LSR #7  ; X0 ^= X0 >> 7
-	EOR   X0, X0, X0, LSL #17 ; X0 ^= X0 << 17
-
+        EOR   X0, X0, X0, LSL #13 ; X0 ^= X0 << 13
+        EOR   X0, X0, X0, LSR #7  ; X0 ^= X0 >> 7
+        EOR   X0, X0, X0, LSL #17 ; X0 ^= X0 << 17
 </pre>
 <p>
   That's it &mdash; only three (or four) instructions!
