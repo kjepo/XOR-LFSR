@@ -107,7 +107,7 @@ RND64B:
   <img alt="Scatter plot" 
        src="https://github.com/kjepo/XOR-LFSR/blob/main/rnd-scatterplot.png">
   <br>
-  <em>Scatter plot with the first 100 16-bit random values on the y-axis and x = 1 .. 100</em>
+  <em>Scatter plot with the first 100 16-bit random values on the y-axis and x = 1 &hellip; 100</em>
 </p>
 
 
